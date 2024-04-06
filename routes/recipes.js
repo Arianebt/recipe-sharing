@@ -18,6 +18,7 @@ router.post("/save", async function (req, res, next) {
     tags: req.body.tags,
   };
 
+  // Find or create recipe and redirect to recipes page
   const recipe = await Recipe.findOneAndUpdate(
     { _id: req.body._id ?? new mongoose.Types.ObjectId() },
     recipeParams,

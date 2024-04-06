@@ -1,9 +1,8 @@
+
 const bcrypt = require("bcrypt");
 const passport = require("passport");
-
 const User = require("../models/user");
 const Recipe = require("../models/recipe");
-
 var express = require("express");
 var router = express.Router();
 
@@ -23,6 +22,7 @@ router.post("/signup", async (req, res) => {
     const { email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    // Register user with hashed password
     await User.register(new User({ email, password: hashedPassword }), password);
 
     res.redirect("/login");
